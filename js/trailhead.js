@@ -35,7 +35,7 @@ function startup() {
   // and reassign API_HOST if necessary
   // var API_HOST = window.location.protocol + "//" + window.location.host;
   //var API_HOST = "http://127.0.0.1:3000";
-  var API_HOST = "http://trailsy.herokuapp.com";
+  var API_HOST = "http://trail-hunter.herokuapp.com";
   // var API_HOST = "http://trailsyserver-dev.herokuapp.com";
   // var API_HOST = "http://trailsyserver-prod.herokuapp.com";
   // var API_HOST = "http://10.0.1.102:3000";
@@ -520,7 +520,8 @@ function startup() {
     var centerLatLng = map.getCenter();
     var centerPoint = map.latLngToContainerPoint(centerLatLng);
     var offset = centerOffset;
-    var offsetCenterPoint = centerPoint.add(offset.divideBy(2));
+    var offsetCenterPoint = centerPoint.add(offset.divideBy(2));api
+    
     var offsetLatLng = map.containerPointToLatLng(offsetCenterPoint);
     if ($(e.target).hasClass("offsetZoomIn")) {
       map.setZoomAround(offsetLatLng, map.getZoom() + 1);
