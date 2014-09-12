@@ -520,7 +520,7 @@ function startup() {
     var centerLatLng = map.getCenter();
     var centerPoint = map.latLngToContainerPoint(centerLatLng);
     var offset = centerOffset;
-    var offsetCenterPoint = centerPoint.add(offset.divideBy(2));api
+    var offsetCenterPoint = centerPoint.add(offset.divideBy(2));
     
     var offsetLatLng = map.containerPointToLatLng(offsetCenterPoint);
     if ($(e.target).hasClass("offsetZoomIn")) {
