@@ -25,9 +25,11 @@ function startup() {
   var TOUCH = $('html').hasClass('touch');
   // Map generated in CfA Account
   var MAPBOX_MAP_ID = "codeforamerica.map-j35lxf9d";
+  // Not really Akron --- Anchorage
+  // TODO: Rename 'AKRON' to something more generic
   var AKRON = {
-    lat: 41.082020,
-    lng: -81.518506
+    lat: 61.21667,
+    lng: -149.9
   };
 
   // API_HOST: The API server. Here we assign a default server, then 
