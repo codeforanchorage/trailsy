@@ -25,9 +25,9 @@ function startup() {
   var TOUCH = $('html').hasClass('touch');
   // Map generated in CfA Account
   var MAPBOX_MAP_ID = "codeforamerica.map-j35lxf9d";
-  var AKRON = {
-    lat: 41.082020,
-    lng: -81.518506
+  var Anchorage = {
+    lat: 61.21667,
+    lng: -149.9
   };
 
   // API_HOST: The API server. Here we assign a default server, then 
@@ -241,8 +241,8 @@ function startup() {
 
   // =====================================================================//
   function showOverlay() {
-    var overlayHTMLIE = "<h1>Welcome to To The Trails!</h1>" + 
-    "<p>We're sorry, but To The Trails is not compatible with Microsoft Internet Explorer 8 or earlier versions of that web browser." + 
+    var overlayHTMLIE = "<h1>Trail Hunter!</h1>" + 
+    "<p>We're sorry, but Anchorage Trails is not compatible with Microsoft Internet Explorer 8 or earlier versions of that web browser." + 
     "<p>Please upgrade to the latest version of " +
     "<a href='http://windows.microsoft.com/en-us/internet-explorer/download-ie'>Internet Explorer</a>, " + 
     "<a href='http://google.com/chrome'>Google Chrome</a>, or " +  
@@ -251,13 +251,13 @@ function startup() {
     "<img src='/img/Overlay-Image-01.png' alt='trees'>";
 
     var overlayHTML = "<span class='closeOverlay'>x</span>" +
-    "<h1>Welcome To The Trails!</h1>" +
-    "<p>Pick trails, find your way, and keep your bearings as you move between trails and parks in Cuyahoga Valley National Park and Metro Parks, Serving Summit County and beyond." +
-    "<p>ToTheTrails.com is currently in public beta. It's a work in progress! We'd love to hear how this site is working for you." +
-    "<p>Send feedback and report bugs to <a href='mailto:hello@tothetrails.com?Subject=Feedback' target='_top'>hello@tothetrails.com</a>. Learn more on our 'About' page.";
+    "<h1>Discover New Trails!</h1>" +
+    "<p>Pick trails, find your way, and keep your bearings as you move between trails and parks in Anchorage, Chugach State Park, the Matanuska-Susitna borough and beyond." +
+    "<p>Trail Hunter is currently in public beta.  We'd love to hear how this site is working for you." +
+    "<p>Send feedback and report bugs to <a href='mailto:hans.thompson1@gmail.com?Subject=Trail Feedback' target='_top'>hans.thompson1@gmail.com</a>. Learn more on our 'About' page.";
 
     var closedOverlayHTML = "<h1>Visit us on your desktop!</h1>" +
-    "<p>We'll be launching To The Trails for mobile devices on November 15th, but desktop access is available now!" +
+    "<p>Sorry but this site isn't yet optimized to work on mobile." +
     "<img src='/img/Overlay-Image-01.png' alt='trees'>";
 
     // restricting SMALL devices only as of 11/13/2013
@@ -568,10 +568,10 @@ function startup() {
         },
         options);
     } else {
-      // for now, just returns Akron
+      // for now, just returns Anchorage
       // should use browser geolocation,
-      // and only return Akron if we're far from home base
-      currentUserLocation = AKRON;
+      // and only return Anchorage if we're far from home base
+      currentUserLocation = Anchorage;
       showGeoOverlay();
       handleGeoError("no geolocation", callback);
     }
@@ -580,20 +580,20 @@ function startup() {
 
   function handleGeoSuccess(position, callback) {
     currentUserLocation = new L.LatLng(position.coords.latitude, position.coords.longitude);
-    var distanceToAkron = currentUserLocation.distanceTo(AKRON) / 1000;
+    var distanceToAkron = currentUserLocation.distanceTo(Anchorage) / 1000;
     // if no map, set it up
     if (!map) {
       var startingMapLocation;
       var startingMapZoom;
-      // if we're close to Akron, start the map and the trailhead distances from 
-      // the current location, otherwise just use AKRON for both
+      // if we're close to Anchorage, start the map and the trailhead distances from 
+      // the current location, otherwise just use Anchorage for both
       if (distanceToAkron < LOCAL_LOCATION_THRESHOLD) {
         anchorLocation = currentUserLocation;
         startingMapLocation = currentUserLocation;
         startingMapZoom = 13;
       } else {
-        anchorLocation = AKRON;
-        startingMapLocation = AKRON;
+        anchorLocation = Anchorage;
+        startingMapLocation = Anchorage;
         startingMapZoom = 11;
       }
       map = createMap(startingMapLocation, startingMapZoom);
@@ -622,8 +622,8 @@ function startup() {
     console.log(error);
     if (!map) {
       console.log("making map anyway");
-      map = createMap(AKRON, 11);
-      currentUserLocation = AKRON;
+      map = createMap(Anchorage, 11);
+      currentUserLocation = Anchorage;
       if (error.code === 1) {
         showGeoOverlay();
       }
@@ -638,7 +638,7 @@ function startup() {
   }
 
   function showGeoOverlay() {
-    var noGeolocationOverlayHTML = "<span class='closeOverlay'>x</span><p>We weren't able to get your current location, so we'll give you trailhead distances from downtown Akron.";
+    var noGeolocationOverlayHTML = "<span class='closeOverlay'>x</span><p>We weren't able to get your current location, so we'll give you trailhead distances from downtown Anchorage.";
     $(".overlay-panel").html(noGeolocationOverlayHTML);
     $(".overlay").show();
     $(".overlay-panel").click(function() {
