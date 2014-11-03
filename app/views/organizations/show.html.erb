@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<div class='formContent-Show'>
+  <h3>
+    Code:
+    <span class='formAnswer'><%= @organization.code %></span>
+  </h3>
+
+  <h3>
+    Full name:
+    <span class='formAnswer'><%= @organization.full_name %></span>
+  </h3>
+
+  <h3>
+    Phone:
+    <span class='formAnswer'><%= @organization.phone %></span>
+  </h3>
+
+  <h3>
+    Url:
+    <span class='formAnswer'><%= @organization.url %></span>
+  </h3>
+
+  <h3>
+    Logo:
+    <% if @organization.logo %>
+      <span class='formAnswer'><%= image_tag @organization.logo.url %></span>
+    <% else %>
+      [None]
+    <% end %>
+  </h3>
+</div>
+
+<div class='formButtons'>
+  <!--back button <span class='backButton'>  
+    <%= link_to 'Back', organizations_path %>
+  </span> -->
+  <span class='addNewButton'>
+    <%= link_to 'Edit', edit_organization_path(@organization) %>
+  </span>    
+</div>

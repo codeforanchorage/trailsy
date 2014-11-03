@@ -1,0 +1,39 @@
+<h1>Organizations</h1>
+<p class='tableCaption'>
+  Manage organization information here.
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Full name</th>
+      <th>Phone</th>
+      <th>Url</th>
+      <th colspan=2>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= organization.code %></td>
+        <td><%= organization.full_name %></td>
+        <td><%= organization.phone %></td>
+        <td><%= organization.url %></td>
+        <% if current_user.admin? || (current_user.organization.code == organization.code) %>
+          <td><%= link_to 'Edit', edit_organization_path(organization), :class => "tableLink" %></td>
+          <% if current_user.admin? %>
+            <td><%= link_to 'Delete', organization, :class => "tableLink-delete", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class='formButtons'>
+  <div class='finePrint'>When an organization is deleted, all of the users, trails, trailheads, and trailsegments associated with that organization are deleted as well, except in the case of stewards, in which case the value will be blank. Don't delete an organization unless it is absolutely necessary.</div>
+  <br><br>
+  <% if current_user.admin? %>
+  <span class='buttonBelow'><%= link_to 'Add New Organization', new_organization_path%></span>
+  <% end %>
+</div>

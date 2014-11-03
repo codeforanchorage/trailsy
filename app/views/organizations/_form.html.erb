@@ -1,0 +1,49 @@
+<%= form_for(@organization) do |f| %>
+  <% if @organization.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
+
+      <ul>
+      <% @organization.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='finePrint'>This is the information that appears at the bottom of each trail descprition in the application.</div>
+  <br>
+  <div class="field">
+    <span class='h3-Edit'><%= f.label :code %></span>
+    <%= f.text_field :code, size: 13 %>
+  </div>
+  <div class="field">
+    <span class='h3-Edit'><%= f.label :full_name %></span>
+    <%= f.text_field :full_name, size: 60 %>
+  </div>
+  <div class="field">
+    <span class='h3-Edit'><%= f.label :phone %></span>
+    <%= f.text_field :phone, size: 13 %>
+  </div>
+  <div class="field">
+    <span class='h3-Edit'><%= f.label :url %></span>
+    <%= f.text_field :url, size: 60 %>
+  </div>
+  <div class="field">
+    <span class='h3-Edit'><%= f.label :logo %></span>
+    <div class='finePrint'>Logo files should be cropped in completely to the edge of the artwork. This way, all of the logos will have consistant margins in the footer of the app.
+    <br>
+    <br>
+    Accepted file types: .jpeg (if the logo is on a white background) and .png</div>
+    <% if @organization.logo.url =~ /missing.png/ %>
+      <span class='formAnswer'>[None]</span>
+    <% else %>
+    <%= link_to image_tag(@organization.logo.url(:medium)) %>
+    <% end %>
+    <br><br>
+    <%= f.file_field :logo %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
